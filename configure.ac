@@ -643,6 +643,7 @@ tests/Makefile
 tests/lib/Makefile
 tests/lib/mcconfig/Makefile
 tests/lib/search/Makefile
+tests/lib/strutil/Makefile
 tests/lib/vfs/Makefile
 tests/src/Makefile
 tests/src/filemanager/Makefile
