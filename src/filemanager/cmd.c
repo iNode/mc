@@ -3,8 +3,11 @@
    They normally operate on the current panel.
 
    Copyright (C) 1994, 1995, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
-   2005, 2006, 2007, 2009, 2011
+   2005, 2006, 2007, 2009, 2011, 2013
    The Free Software Foundation, Inc.
+
+   Written by:
+   Andrew Borodin <aborodin@vmail.ru>, 2013
 
    This file is part of the Midnight Commander.
 
@@ -1565,7 +1568,7 @@ single_dirsize_cmd (void)
         ComputeDirSizeUI *ui;
         vfs_path_t *p;
 
-        ui = compute_dir_size_create_ui ();
+        ui = compute_dir_size_create_ui (FALSE);
         p = vfs_path_from_str (entry->fname);
 
         if (compute_dir_size (p, ui, compute_dir_size_update_ui, &marked, &total, TRUE) ==
@@ -1599,7 +1602,7 @@ dirsizes_cmd (void)
     int i;
     ComputeDirSizeUI *ui;
 
-    ui = compute_dir_size_create_ui ();
+    ui = compute_dir_size_create_ui (FALSE);
 
     for (i = 0; i < panel->count; i++)
         if (S_ISDIR (panel->dir.list[i].st.st_mode)
