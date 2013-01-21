@@ -425,7 +425,7 @@ size_trunc_len (char *buffer, unsigned int len, uintmax_t size, int units, gbool
         10000000ULL,
         100000000ULL,
         1000000000ULL
-    /* maximmum value of uintmax_t (in case of 4 bytes) is
+    /* maximum value of uintmax_t (in case of 4 bytes) is
         4294967295
      */
 #if SIZEOF_UINTMAX_T == 8
@@ -440,7 +440,7 @@ size_trunc_len (char *buffer, unsigned int len, uintmax_t size, int units, gbool
         100000000000000000ULL,
         1000000000000000000ULL,
         10000000000000000000ULL
-    /* maximmum value of uintmax_t (in case of 8 bytes) is
+    /* maximum value of uintmax_t (in case of 8 bytes) is
         18447644073710439615
      */
 #endif
