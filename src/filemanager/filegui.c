@@ -422,10 +422,10 @@ overwrite_query_dialog (FileOpContext * ctx, enum OperationMode mode)
         { N_("Target file already exists!"), 3, 4, WPOS_KEEP_TOP | WPOS_CENTER_HORZ, 0 },
         /*  1 */
         { "%s", 4, 4, WPOS_KEEP_TOP | WPOS_CENTER_HORZ, 0 },
-        /*  2 */        /* cannot use PRIuMAX here; %llu is used instead */
-        { N_("New     : %s, size %llu"), 6, 4, WPOS_KEEP_DEFAULT, 0 },
-        /*  3 */        /* cannot use PRIuMAX here; %llu is used instead */
-        { N_("Existing: %s, size %llu"), 7, 4, WPOS_KEEP_DEFAULT, 0 },
+        /*  2 */
+        { N_("New     : %s, size %s"), 6, 4, WPOS_KEEP_DEFAULT, 0 },
+        /*  3 */
+        { N_("Existing: %s, size %s"), 7, 4, WPOS_KEEP_DEFAULT, 0 },
         /*  4 */
         { N_("Overwrite this target?"), 9, 4, WPOS_KEEP_DEFAULT, 0 },
         /*  5 */
@@ -546,11 +546,11 @@ overwrite_query_dialog (FileOpContext * ctx, enum OperationMode mode)
     add_widget (ui->replace_dlg, hline_new (y++, -1, -1));
 
     /* source date and size */
-    ADD_RD_LABEL (2, file_date (ui->s_stat->st_mtime), (unsigned long long) ui->s_stat->st_size,
-                  y++);
+    ADD_RD_LABEL (2, file_date (ui->s_stat->st_mtime),
+                  size_trunc_sep (ui->s_stat->st_size, panels_options.kilobyte_si), y++);
     /* destination date and size */
-    ADD_RD_LABEL (3, file_date (ui->d_stat->st_mtime), (unsigned long long) ui->d_stat->st_size,
-                  y++);
+    ADD_RD_LABEL (3, file_date (ui->d_stat->st_mtime),
+                  size_trunc_sep (ui->d_stat->st_size, panels_options.kilobyte_si), y++);
 
     add_widget (ui->replace_dlg, hline_new (y++, -1, -1));
 
