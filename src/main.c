@@ -47,6 +47,7 @@
 #include "lib/event.h"
 #include "lib/tty/tty.h"
 #include "lib/tty/key.h"        /* For init_key() */
+#include "lib/tty/mouse.h"      /* init_mouse() */
 #include "lib/skin.h"
 #include "lib/filehighlight.h"
 #include "lib/fileloc.h"
@@ -367,7 +368,6 @@ main (int argc, char *argv[])
     /* inherit the file descriptors opened below, etc */
     if (mc_global.tty.use_subshell)
         init_subshell ();
-
 #endif /* ENABLE_SUBSHELL */
 
     /* Also done after init_subshell, to save any shell init file messages */
@@ -385,6 +385,10 @@ main (int argc, char *argv[])
         message (D_ERROR, _("Warning"), "%s", config_migrate_msg);
         g_free (config_migrate_msg);
     }
+
+    /* Done after subshell initialization to allow select and paste text by mouse
+       w/o Shift button in subshell in the native console */
+    init_mouse ();
 
     /* Program main loop */
     if (mc_global.midnight_shutdown)
