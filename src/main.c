@@ -377,6 +377,10 @@ main (int argc, char *argv[])
     if (mc_global.tty.alternate_plus_minus)
         application_keypad_mode ();
 
+    /* Done after subshell initialization to allow select and paste text by mouse
+       w/o Shift button in subshell in the native console */
+    init_mouse ();
+
     /* subshell_prompt is NULL here */
     mc_prompt = (geteuid () == 0) ? "# " : "$ ";
 
@@ -385,10 +389,6 @@ main (int argc, char *argv[])
         message (D_ERROR, _("Warning"), "%s", config_migrate_msg);
         g_free (config_migrate_msg);
     }
-
-    /* Done after subshell initialization to allow select and paste text by mouse
-       w/o Shift button in subshell in the native console */
-    init_mouse ();
 
     /* Program main loop */
     if (mc_global.midnight_shutdown)
